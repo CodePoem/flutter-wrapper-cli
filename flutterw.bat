@@ -16,12 +16,12 @@ set FLUTTER_WRAPPER_PROPERTIES=%FLUTTER_APP_HOME%flutter\wrapper\flutter-wrapper
 set FLUTTER_SDK_PATH=%USERPROFILE%\AppData\Local\Flutter
 
 if not exist %FLUTTER_WRAPPER_PROPERTIES% (
-	echo.
-	echo ERROR: The %FLUTTER_WRAPPER_PROPERTIES% file can not be found.
-	echo.
-	echo Please execute the 'flutter wrapper' command to generate it.
-	echo.
-	goto fail
+    echo.
+    echo ERROR: The %FLUTTER_WRAPPER_PROPERTIES% file can not be found.
+    echo.
+    echo Please execute the 'flutter wrapper' command to generate it.
+    echo.
+    goto fail
 )
 
 FOR /F "tokens=1* delims==" %%A IN (%FLUTTER_WRAPPER_PROPERTIES%) DO (
@@ -59,21 +59,21 @@ goto check
 :download
 git --version >NUL 2>&1
 if "%ERRORLEVEL%" EQU "0" (
-	if exist %flutter_home_dir% (
-		rmdir /S %flutter_home_dir% >NUL 2>&1
-	)
-	if not exist %flutter_home% mkdir %flutter_home% >NUL 2>&1
-	git clone -b %flutterVersion% %distributionUrl% %flutter_home%
+    if exist %flutter_home_dir% (
+        rmdir /S %flutter_home_dir% >NUL 2>&1
+    )
+    if not exist %flutter_home% mkdir %flutter_home% >NUL 2>&1
+    git clone -b %flutterVersion% %distributionUrl% %flutter_home%
 ) else (
-	echo.
-	echo ERROR: Git is not installed in your system and no 'git' command could be found in your PATH.
-	echo.
-	goto fail
+    echo.
+    echo ERROR: Git is not installed in your system and no 'git' command could be found in your PATH.
+    echo.
+    goto fail
 )
 
 :check
 if not exist %flutter_cache% (
-	%flutter_executable% doctor
+    %flutter_executable% doctor
 )
 
 :execute
